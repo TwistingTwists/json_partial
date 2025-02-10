@@ -41,7 +41,7 @@ Add this library as a dependency in your `Cargo.toml`:
 
 ```toml
 [dependencies]
-jsonish = { git = "https://github.com/yourusername/jsonish.git" }
+json_partial = { git = "https://github.com/TwistingTwists/json_partial" }
 ```
 
 ---
@@ -51,11 +51,20 @@ jsonish = { git = "https://github.com/yourusername/jsonish.git" }
 Here’s a simple example that demonstrates how to use jsonish to parse a JSON string:
 
 ```rust
-use jsonish::{parse, Value, ParseOptions};
+use json_partial::jsonish::{parse, Value, ParseOptions};
+use serde::Deserialize;
+
+#[derive(Debug, Deserialize)]
+struct Person {
+    name: String,
+    age: u8,
+}
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // A valid JSON input.
+    // A string given by LLM
     let input = r#"
+    Here is your text 
+    
     {
         "name": "Alice",
         "age": 30
@@ -63,12 +72,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     "#;
 
     // Parse the JSON using default options.
-    let value: Value = parse(input, ParseOptions::default())?;
+    let value = parse(input, ParseOptions::default())?;
     println!("Parsed value: {:#?}", value);
 
     // Convert to serde_json::Value if needed.
-    let serde_value = jsonish::to_serde::jsonish_to_serde(&value);
+    let serde_value = jsonish::jsonish_to_serde(&value);
+    let person: Person = serde_json::from_value(serde_value).unwrap();
     println!("Serde JSON value: {}", serde_value);
+    println!("Person: {:?}", person);
 
     Ok(())
 }
