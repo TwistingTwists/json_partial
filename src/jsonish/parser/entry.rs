@@ -17,8 +17,8 @@ pub fn parse(str: &str, mut options: ParseOptions) -> Result<Value> {
 
     options.depth += 1;
     if options.depth > 100 {
-        return Err(anyhow::anyhow!(
-            "Depth limit reached. Likely a circular reference."
+        return Err(JsonishError::ParseError(
+            "Depth limit reached. Likely a circular reference.".into(),
         ));
     }
 
