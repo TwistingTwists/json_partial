@@ -4,13 +4,14 @@ use crate::jsonish::{
 };
 
 use super::ParseOptions;
-use crate::error::{JsonishError, Result};
+use anyhow::Result;
 
 #[derive(Debug)]
 pub enum MarkdownResult {
     CodeBlock(String, Value),
     String(String),
 }
+
 pub fn parse(str: &str, options: &ParseOptions) -> Result<Vec<MarkdownResult>> {
     let mut values = vec![];
 
@@ -18,9 +19,9 @@ pub fn parse(str: &str, options: &ParseOptions) -> Result<Vec<MarkdownResult>> {
     // Find regex for markdown blocks (```<tag><EOF|newline>)
 
     let md_tag_start = regex::Regex::new(r"```([a-zA-Z0-9 ]+)(?:\n|$)")
-        .map_err(|e| JsonishError::RegexError(e))?;
+        .map_err(|e| anyhow::Error::from(e).context("Failed to build regex for md-tag-start"))?;
     let md_tag_end = regex::Regex::new(r"```(?:\n|$)")
-        .map_err(|e| JsonishError::RegexError(e))?;
+        .map_err(|e| anyhow::Error::from(e).context("Failed to build regex for md-tag-end"))?;
 
     let mut should_loop = true;
 
@@ -68,7 +69,7 @@ pub fn parse(str: &str, options: &ParseOptions) -> Result<Vec<MarkdownResult>> {
     }
 
     if values.is_empty() {
-        Err(JsonishError::ParseError("No markdown blocks found".into()))
+        anyhow::bail!("No markdown blocks found")
     } else {
         if !remaining.trim().is_empty() {
             values.push(MarkdownResult::String(remaining.to_string()));
