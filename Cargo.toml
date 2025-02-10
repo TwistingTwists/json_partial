@@ -2,6 +2,7 @@
 name = "json_partial"
 version = "0.1.0"
 edition = "2021"
+description = "Parse Imperfect Json given by LLMs"
 authors = ["Abhishek Tripathi <abhishek.tripathi456@gmail.com>"]
 repository = "https://github.com/TwistingTwists/json_partial"
 license = "MIT OR Apache-2.0"
