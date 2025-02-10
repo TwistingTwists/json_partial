@@ -6,6 +6,9 @@ authors = ["Abhishek Tripathi <abhishek.tripathi456@gmail.com>"]
 repository = "https://github.com/TwistingTwists/json_partial"
 license = "MIT OR Apache-2.0"
 keywords = ["serde", "llm", "json"]
+homepage = "https://crates.io/crates/json_partial"
+readme        = "README.md"
+documentation = "https://docs.rs/json_partial"
 
 
 [dependencies]
