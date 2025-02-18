@@ -25,7 +25,6 @@ Source = "https://github.com/TwistingTwists/json_partial"
 python-source = "py_src"
 features = ["pyo3/extension-module"]
 module-name = "jsonish"
-# module-name = "json_partial.jsonish"
 
 # [tool.uv.config-settings]
 # # Faster feedback on Rust builds

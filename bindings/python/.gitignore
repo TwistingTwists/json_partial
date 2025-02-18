@@ -73,3 +73,4 @@ docs/_build/
 
 # for now, disable github
 .github
+py_src/json_partial_py/a.py
