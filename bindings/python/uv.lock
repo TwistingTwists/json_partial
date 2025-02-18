@@ -41,7 +41,7 @@ wheels = [
 ]
 
 [[package]]
-name = "json-partial-py"
+name = "jsonish"
 version = "0.1.0"
 source = { editable = "." }
 
