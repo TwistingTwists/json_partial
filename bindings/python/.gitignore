@@ -70,7 +70,3 @@ docs/_build/
 
 # Pyenv
 .python-version
-
-# for now, disable github
-.github
-py_src/json_partial_py/a.py
