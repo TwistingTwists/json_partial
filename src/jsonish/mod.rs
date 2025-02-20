@@ -47,9 +47,12 @@ mod tests {
             .expect("Parser should handle the errors and return a Value");
         let json_output = to_json_string(&value).expect("to_json_string conversion should succeed");
 
-        // And that keys are output in sorted order, the expected compact JSON is:
-        let expected =
-            r#"{"age":30,"naem":"Alice", extra:"remove me","yap":"   noisy message   "}"#;
-        assert_eq!(json_output, expected);
+        // Parse both strings as JSON values to compare them without caring about key order
+        let output_value: serde_json::Value = serde_json::from_str(&json_output).unwrap();
+        let expected_value: serde_json::Value = serde_json::from_str(
+            r#"{"age":30,"naem":"Alice","extra":"remove me","yap":"   noisy message   "}"#,
+        )
+        .unwrap();
+        assert_eq!(output_value, expected_value);
     }
 }
