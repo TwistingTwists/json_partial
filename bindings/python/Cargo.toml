@@ -7,7 +7,7 @@ authors = ["Abhishek Tripathi <abhishek.tripathi456@gmail.com"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [lib]
-name = "jsonish"
+name = "json_partial_py"
 crate-type = ["cdylib"]
 
 [dependencies]

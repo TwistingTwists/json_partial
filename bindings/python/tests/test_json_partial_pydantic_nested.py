@@ -2,7 +2,7 @@ import pytest
 from typing import List
 from pydantic import BaseModel
 
-from jsonish import to_json_string  # Adjust the import if necessary.
+from json_partial_py import to_json_string
 
 # Define nested models for the JSON structure.
 class Coordinates(BaseModel):

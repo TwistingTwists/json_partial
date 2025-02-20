@@ -2,15 +2,7 @@ import json
 import pytest
 
 
-from jsonish import to_json_string, to_json_string_pretty
-# from json_partial import to_json_string, to_json_string_pretty
-# from json_partial.jsonish import to_json_string, to_json_string_pretty
-# from json_partial.jsonish import to_json_string, to_json_string_pretty
-
-# from json_partial_py import to_json_string, to_json_string_pretty
-# from json_partial_py.jsonish import to_json_string, to_json_string_pretty
-# from json_partial_py.jsonish import to_json_string, to_json_string_pretty
-
+from json_partial_py import to_json_string, to_json_string_pretty
 
 # This string is taken from your a.py example.
 # It contains a JSON code block (with Markdown fences) and a missing comma between the key/value pairs.

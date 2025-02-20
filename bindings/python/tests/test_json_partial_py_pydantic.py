@@ -1,6 +1,6 @@
 import pytest
 from pydantic import BaseModel
-from jsonish import to_json_string, to_json_string_pretty
+from json_partial_py import to_json_string
 
 # Define a simple Pydantic model that matches the expected JSON structure.
 class Person(BaseModel):

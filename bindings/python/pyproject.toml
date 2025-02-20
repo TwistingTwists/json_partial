@@ -3,7 +3,8 @@ requires = ["maturin>=1.8,<2.0"]
 build-backend = "maturin"
 
 [project]
-name = "jsonish"
+name = "json_partial_python"
+authors = [{name="Abhishek Tripathi", email="abhishek.tripathi456@gmail.com"}]
 requires-python = ">=3.8"
 classifiers = [
   "Intended Audience :: Developers",
@@ -22,9 +23,9 @@ Source = "https://github.com/TwistingTwists/json_partial"
 # testing = ["pytest","pydantic"]
 
 [tool.maturin]
-# python-source = "py_src"
+python-source = "py_src"
 features = ["pyo3/extension-module"]
-module-name = "jsonish"
+module-name = "json_partial_py"
 
 # [tool.uv.config-settings]
 # # Faster feedback on Rust builds

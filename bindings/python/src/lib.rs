@@ -1,5 +1,6 @@
 use pyo3::prelude::*;
 use pyo3::exceptions::PyTypeError;
+use pyo3::wrap_pymodule;
 
 #[pyfunction]
 fn to_json_string(json: String) -> PyResult<String> {
@@ -41,5 +42,11 @@ pub fn jsonish(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(to_json_string, m)?)?;
     m.add_function(wrap_pyfunction!(to_json_string_pretty, m)?)?;
     m.add("__version__", env!("CARGO_PKG_VERSION"))?;
+    Ok(())
+}
+
+#[pymodule]
+pub fn json_partial_py(m: &Bound<'_, PyModule>) -> PyResult<()> {
+    m.add_wrapped(wrap_pymodule!(jsonish))?;
     Ok(())
 }
