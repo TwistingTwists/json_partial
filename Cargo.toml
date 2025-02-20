@@ -17,4 +17,13 @@ log = "0.4.20"
 regex = "1.11.1"
 serde = { version = "1.0.217", features = ["derive"] }
 serde_json = "1.0.138"
+
+[dev-dependencies]
 test-log = "0.2.16"
+
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+lto = "fat"
+opt-level = "s"
