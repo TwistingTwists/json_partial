@@ -12,8 +12,9 @@ pub fn jsonish_to_serde(value: &jsonish::Value) -> serde_json::Value {
             }
             serde_json::Value::Object(map)
         }
-        jsonish::Value::Array(elements) => 
-            serde_json::Value::Array(elements.iter().map(jsonish_to_serde).collect()),
+        jsonish::Value::Array(elements) => {
+            serde_json::Value::Array(elements.iter().map(jsonish_to_serde).collect())
+        }
         jsonish::Value::Markdown(_, inner) => jsonish_to_serde(inner),
         jsonish::Value::FixedJson(inner, _) => jsonish_to_serde(inner),
         jsonish::Value::AnyOf(values, _) => values

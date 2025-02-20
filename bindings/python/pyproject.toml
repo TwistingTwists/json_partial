@@ -1,0 +1,53 @@
+[build-system]
+requires = ["maturin>=1.8,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "json_partial_python"
+authors = [{name="Abhishek Tripathi", email="abhishek.tripathi456@gmail.com"}]
+requires-python = ">=3.8"
+classifiers = [
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+keywords = ["structured outputs", "agents", "llm"]
+dynamic = ["version", "readme"]
+
+[project.urls]
+Homepage = "https://github.com/TwistingTwists/json_partial"
+Source = "https://github.com/TwistingTwists/json_partial"
+
+
+# [project.optional-dependencies]
+# testing = ["pytest","pydantic"]
+
+[tool.maturin]
+python-source = "py_src"
+features = ["pyo3/extension-module"]
+module-name = "json_partial_py"
+
+# [tool.uv.config-settings]
+# # Faster feedback on Rust builds
+# build-args = ["--profile=dev"]
+
+[tool.uv]
+cache-keys = ["pyproject.toml", "Cargo.toml", "src/*.rs"]
+
+[dependency-groups]
+dev = [
+    "pydantic>=2.10.6",
+    "pytest>=8.3.4",
+]
+
+# [tool.uv.sources]
+# setup = { workspace = true }
+
+# [tool.uv.workspace]
+# members = ["json_partial_py"]

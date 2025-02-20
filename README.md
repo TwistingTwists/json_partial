@@ -4,48 +4,6 @@
 
 ---
 
-## Features
-
-- **Standard JSON Parsing:**  
-  Uses `serde_json` under the hood to parse valid JSON strings quickly and reliably.
-
-- **Error-Tolerant Parsing:**  
-  When given imperfect JSON (e.g. missing commas, unquoted keys, unclosed arrays or objects), jsonish will attempt to fix and recover the input rather than immediately failing.
-
-- **Markdown Code Block Extraction:**  
-  Supports extracting and parsing JSON from markdown code blocks (e.g. fenced with triple backticks). This is especially useful when working with documents or logs that embed JSON in markdown.
-
-- **Multi-Object Handling:**  
-  Can detect and extract multiple JSON objects from a single input, returning them as a combined result.
-
-- **Custom Value Representation:**  
-  The parsed output is provided as a custom `Value` enum that includes variants for:
-  - **Primitives:** Strings, Numbers, Booleans, and Null.
-  - **Complex Structures:** Arrays and Objects.
-  - **Special Cases:**  
-    - `Markdown`: Represents a code block with a tag and its parsed inner value.
-    - `FixedJson`: Wraps JSON that was fixed during parsing, along with a list of applied fixes.
-    - `AnyOf`: Holds multiple possible parsed values (useful when multiple parsing strategies succeed).
-
-- **Serde Conversion:**  
-  Easily convert jsonish’s custom `Value` to a standard [`serde_json::Value`](https://docs.serde.rs/serde_json/) using the provided `jsonish_to_serde` function.
-
-- **Configurable Parsing Options:**  
-  Fine-tune the parsing behavior via the [`ParseOptions`](./jsonish/parser/mod.rs) struct, allowing you to enable or disable specific parsing strategies (e.g. markdown parsing, fixing errors, or treating input as a plain string).
-
----
-
-## Installation
-
-Add this library as a dependency in your `Cargo.toml`:
-
-```toml
-[dependencies]
-json_partial = { git = "https://github.com/TwistingTwists/json_partial" }
-```
-
----
-
 ## Usage
 
 Here’s a simple example that demonstrates how to use jsonish to parse a JSON string:
@@ -120,6 +78,46 @@ jsonish is built to recover from common mistakes. For example:
 
 ---
 
+## Features
+
+- **Standard JSON Parsing:**  
+  Uses `serde_json` under the hood to parse valid JSON strings quickly and reliably.
+
+- **Error-Tolerant Parsing:**  
+  When given imperfect JSON (e.g. missing commas, unquoted keys, unclosed arrays or objects), jsonish will attempt to fix and recover the input rather than immediately failing.
+
+- **Markdown Code Block Extraction:**  
+  Supports extracting and parsing JSON from markdown code blocks (e.g. fenced with triple backticks). This is especially useful when working with documents or logs that embed JSON in markdown.
+
+- **Multi-Object Handling:**  
+  Can detect and extract multiple JSON objects from a single input, returning them as a combined result.
+
+- **Custom Value Representation:**  
+  The parsed output is provided as a custom `Value` enum that includes variants for:
+  - **Primitives:** Strings, Numbers, Booleans, and Null.
+  - **Complex Structures:** Arrays and Objects.
+  - **Special Cases:**  
+    - `Markdown`: Represents a code block with a tag and its parsed inner value.
+    - `FixedJson`: Wraps JSON that was fixed during parsing, along with a list of applied fixes.
+    - `AnyOf`: Holds multiple possible parsed values (useful when multiple parsing strategies succeed).
+
+- **Serde Conversion:**  
+  Easily convert jsonish’s custom `Value` to a standard [`serde_json::Value`](https://docs.serde.rs/serde_json/) using the provided `jsonish_to_serde` function.
+
+- **Configurable Parsing Options:**  
+  Fine-tune the parsing behavior via the [`ParseOptions`](./jsonish/parser/mod.rs) struct, allowing you to enable or disable specific parsing strategies (e.g. markdown parsing, fixing errors, or treating input as a plain string).
+
+---
+
+## Installation
+
+Add this library as a dependency in your `Cargo.toml`:
+
+```toml
+[dependencies]
+json_partial = { git = "https://github.com/TwistingTwists/json_partial" }
+```
+
 ## API Overview
 
 - **`jsonish::parse`**  
@@ -161,7 +159,7 @@ cargo test
 
 ## Contributing
 
-Contributions, bug reports, and feature requests are welcome! Feel free to open issues or submit pull requests on [GitHub](https://github.com/yourusername/jsonish).
+Contributions, bug reports, and feature requests are welcome! Feel free to open issues or submit pull requests on [GitHub](https://github.com/TwistingTwists/json_partial).
 
 ---
 
