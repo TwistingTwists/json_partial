@@ -31,3 +31,13 @@ person = Person.model_validate_json(json_str)
 print(person)
 
 </pre>
+
+
+## publishing
+
+use zig to correctly compile to the desired target
+`maturin build --release --target aarch64-unknown-linux-gnu --zig`
+
+move the files from `target/wheels` to `dist/` folder. 
+
+use `uv publish` 
