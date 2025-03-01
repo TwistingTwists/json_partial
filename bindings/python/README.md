@@ -5,7 +5,7 @@ This is python bindings for `json_partial` library (Rust).
 Usage: 
 
 ```python
-pip install json_partial_py
+pip install json_partial_python
 ```
 
 ## Simple Example
@@ -90,7 +90,11 @@ print(person)
 
 To compile to the desired target using Zig, execute the following command:
 `maturin build --release --target aarch64-unknown-linux-gnu --zig`
+`maturin build --release --target x86_64-unknown-linux-gnu --zig`
 
-After building, move the files from the `target/wheels` directory to the `dist/` folder. 
+After building, move the files from the `target/wheels` directory to the `dist/` folder using the following command:
+```bash
+cp target/wheels/* dist/
+```
 
 Finally, use the command `uv publish` to publish the package.
