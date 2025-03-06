@@ -1,5 +1,5 @@
-use pyo3::prelude::*;
 use pyo3::exceptions::PyTypeError;
+use pyo3::prelude::*;
 use pyo3::wrap_pymodule;
 
 #[pyfunction]

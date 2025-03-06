@@ -5,6 +5,7 @@ build-backend = "maturin"
 [project]
 name = "json_partial_python"
 authors = [{name="Abhishek Tripathi", email="abhishek.tripathi456@gmail.com"}]
+description = "getting structured outputs from LLMs"
 requires-python = ">=3.8"
 classifiers = [
   "Intended Audience :: Developers",
