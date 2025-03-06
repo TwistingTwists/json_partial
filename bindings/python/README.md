@@ -86,6 +86,17 @@ print(person)
 
 </pre> 
 
+One more corner case handled
+<pre>
+MALFORMED_JSON=r"""
+{ rec_one: "and then i said \"hi\", and also \"bye\"", rec_two: "and then i said "hi", and also "bye"", "also_rec_one": ok }
+"""
+
+json_str = to_json_string(MALFORMED_NESTED_JSON)
+print(json.loads(json_str))
+
+</pre>
+
 ## Publishing
 
 To compile to the desired target using Zig, execute the following command:
