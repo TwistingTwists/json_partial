@@ -299,6 +299,40 @@ impl JsonParseState {
                 (false, false, false, false)
             };
 
+            let closing_char_count = if closing_char == '"' {
+                // count the number of quotes in the string
+                let (last, _) = self.collection_stack.last().unwrap();
+                match last {
+                    JsonCollection::QuotedString(s, ..) => {
+                        let mut count = 0;
+                        // Iterate with indices so we can look backwards
+                        for (i, c) in s.char_indices() {
+                            if c == '"' {
+                                // Count consecutive backslashes immediately preceding this quote
+                                let mut backslash_count = 0;
+                                let mut j = i;
+                                while j > 0 {
+                                    j -= 1;
+                                    if s.as_bytes()[j] == b'\\' {
+                                        backslash_count += 1;
+                                    } else {
+                                        break;
+                                    }
+                                }
+                                // Only count this quote if the number of backslashes is even
+                                if backslash_count % 2 == 0 {
+                                    count += 1;
+                                }
+                            }
+                        }
+                        count
+                    }
+                    _ => 0,
+                }
+            } else {
+                0
+            };
+
         if let Some((idx, next_char)) = next.peek() {
             let _idx = *idx;
             match next_char {
@@ -307,12 +341,22 @@ impl JsonParseState {
                     log::debug!("Closing due to: key");
                     true
                 }
-                ',' | '}' if in_object_value => {
+                ',' if in_object_value || in_array => {
+                    if closing_char_count % 2 == 0 {
+                        // We're ready to close the value
+                        log::debug!("Closing due to: value",);
+                        true
+                    } else {
+                        // We're not ready to close the value
+                        false
+                    }
+                }
+                '}' if in_object_value => {
                     // We're ready to close the value
                     log::debug!("Closing due to: value",);
                     true
                 }
-                ',' | ']' if in_array => {
+                ']' if in_array => {
                     // We're ready to close the value
                     log::debug!("Closing due to: array");
                     true
